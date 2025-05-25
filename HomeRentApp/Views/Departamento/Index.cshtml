@@ -1,0 +1,32 @@
+﻿@model IEnumerable<HomeRentApp.Models.Departamento>
+
+@{
+    ViewData["Title"] = "Departamentos Disponibles";
+}
+
+
+<!-- Botón para agregar nuevo departamento -->
+<div class="text-center mb-4">
+    <a class="btnAgregar" href="@Url.Action("Agregar", "Departamento")">Agregar Departamento</a>
+</div>
+
+<div class="row">
+    @foreach (var departamento in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@(departamento.Imagen != null ? $"data:image/jpeg;base64,{departamento.Imagen}" : "https://via.placeholder.com/400x250")"
+                     class="card-img-top" alt="Imagen Departamento">
+
+                <div class="card-body">
+                    <h5 class="card-title">@departamento.Nombre</h5>
+                    <p class="card-text">@departamento.Direccion</p>
+                    <p class="card-text"><strong>Precio:</strong> @departamento.Precio.ToString("C")</p>
+                    <p class="card-text"><strong>Cuartos Disponibles:</strong> @departamento.CuartosDisponibles</p>
+
+                    <a href="#" class="btnDepartamento">Ver Departamento</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

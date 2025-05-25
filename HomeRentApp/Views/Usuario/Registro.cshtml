@@ -1,0 +1,75 @@
+﻿@model HomeRentApp.Models.Usuario
+
+@{
+    ViewData["Title"] = "Registro de Usuario";
+}
+
+
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        Hay errores en el formulario. Por favor corrige los campos.
+    </div>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Errores:</strong>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+
+<div class="formContainer">
+    <form asp-action="Registro" method="post">
+        <div class="form-group">
+            <label asp-for="UsuarioId"></label>
+            <input asp-for="UsuarioId" class="form-control" />
+            <span asp-validation-for="UsuarioId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Nombre"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Apellido"></label>
+            <input asp-for="Apellido" class="form-control" />
+            <span asp-validation-for="Apellido" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Correo"></label>
+            <input asp-for="Correo" class="form-control" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Contraseña"></label>
+            <input asp-for="Contraseña" type="password" class="form-control" />
+            <span asp-validation-for="Contraseña" class="text-danger"></span>
+        </div>
+
+  
+
+        <button type="submit" class="btn btn-primary mt-3">Registrarse</button>
+
+        <a class="btn btn-secondary mt-3" href="@Url.Action("Index", "Home")">Iniciar Sesión</a>
+    </form>
+</div>
+
+
+@section Scripts { 
+    @{
+        // Esto hace que las validaciones se hagan de manera rapida sin recargar la página
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

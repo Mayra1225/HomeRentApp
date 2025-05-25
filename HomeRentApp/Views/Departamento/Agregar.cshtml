@@ -1,0 +1,55 @@
+﻿@model HomeRentApp.Models.Departamento
+
+@if (!ViewData.ModelState.IsValid) //Esta funcion de aqui fue de ayuda de gpt para mostrar donde esta el error en el formulario si es que no se ejecuta de manera correcta
+{
+    <div class="alert alert-danger">
+        Hubo errores al procesar el formulario:
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<div class="formContainer">
+    <form asp-action="Agregar" asp-controller="Departamento" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" asp-for="UsuarioId" value="@Context.Session.GetString("UsuarioId")" /> <!-- aQUI SE VALIDA CON EL ID QUE USUARIO ESTA SUBIENDO EL DEPARTAMENTO -->
+
+        <div class="form-group">
+            <label>Imagen del Departamento</label>
+            <input type="file" name="ImagenArchivo" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Nombre"></label>
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Direccion"></label>
+            <input asp-for="Direccion" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Precio"></label>
+            <input asp-for="Precio" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CuartosDisponibles"></label>
+            <input asp-for="CuartosDisponibles" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Publicar Departamento</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

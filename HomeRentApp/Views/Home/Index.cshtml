@@ -1,0 +1,28 @@
+﻿<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Esta index fue un template encontrado en google para la parte de log in ---------->
+<div class="indexBackground">
+    <div class="loginForm">
+        <div id="formContent">
+            <div class="fadeIn first">
+                <img src="~/images/usuario.png" id="icon" alt="Logo" />
+
+            </div>
+
+            <!-- Login Form -->
+            <form asp-action="Login" asp-controller="Usuario" method="post">
+                <input type="text" id="usuarioId" class="fadeIn second" name="usuarioId" placeholder="Usuario ID" required />
+                <input type="password" id="contraseña" class="fadeIn third" name="contraseña" placeholder="Contraseña" required />
+                <input type="submit" class="fadeIn fourth" value="Log In" />
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="@Url.Action("Registro", "Usuario")">Registrarse</a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
