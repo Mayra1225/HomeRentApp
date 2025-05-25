@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeRentApp", "HomeRentApp\HomeRentApp.csproj", "{9BA7CE02-F8A5-433C-9D0D-6AC9F593FFA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeRentApp-Api", "HomeRentApp-Api\HomeRentApp-Api.csproj", "{CEA22B53-0DCD-46DC-B1C6-0FE8CD005982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9BA7CE02-F8A5-433C-9D0D-6AC9F593FFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BA7CE02-F8A5-433C-9D0D-6AC9F593FFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA7CE02-F8A5-433C-9D0D-6AC9F593FFA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA22B53-0DCD-46DC-B1C6-0FE8CD005982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA22B53-0DCD-46DC-B1C6-0FE8CD005982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA22B53-0DCD-46DC-B1C6-0FE8CD005982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA22B53-0DCD-46DC-B1C6-0FE8CD005982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
