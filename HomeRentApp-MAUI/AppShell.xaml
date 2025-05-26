@@ -8,10 +8,8 @@
     Title="HomeRentApp_MAUI">
 
     <TabBar>
-        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate local:HabitacionesPage}" />
-        <ShellContent Title="Nueva" ContentTemplate="{DataTemplate local:NuevaHabitacionPage}" />
-        <ShellContent Title="Nueva" ContentTemplate="{DataTemplate local:EditarHabitacionPage}" />
-        <ShellContent Title="Nueva" ContentTemplate="{DataTemplate local:BorrarHabitacionPage}" />
+        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate local:DepartamentosPage}" />
+        <ShellContent Title="Nuevo" ContentTemplate="{DataTemplate local:NuevoDepartamentoPage}" />
     </TabBar>
 
 </Shell>

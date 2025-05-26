@@ -25,18 +25,43 @@ namespace HomeRentApp_Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Departamento>>> GetDepartamentos()
         {
-            return await _context.Departamento.ToListAsync();
+            var departamentos = await _context.Departamento.ToListAsync();
+
+            var resultado = departamentos.Select(d => new DepartamentoResponseDto
+            {
+                DepartamentoId = d.DepartamentoId,
+                ImagenUrl = $"{Request.Scheme}://{Request.Host}/uploads/{d.Imagen}",
+                Nombre = d.Nombre,
+                Direccion = d.Direccion,
+                Precio = d.Precio,
+                CuartosDisponibles = d.CuartosDisponibles,
+                UsuarioId = d.UsuarioId
+            });
+
+            return Ok(resultado);
         }
 
-        // GET: api/Departamentos/5
+        // Replace the return statement in the GetDepartamento method to ensure the correct ActionResult type is returned.
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Departamento>> GetDepartamento(int id)
+        public async Task<ActionResult<DepartamentoResponseDto>> GetDepartamento(int id)
         {
             var departamento = await _context.Departamento.FindAsync(id);
             if (departamento == null)
                 return NotFound();
 
-            return departamento;
+            var dto = new DepartamentoResponseDto
+            {
+                DepartamentoId = departamento.DepartamentoId,
+                ImagenUrl = $"{Request.Scheme}://{Request.Host}/uploads/{departamento.Imagen}",
+                Nombre = departamento.Nombre,
+                Direccion = departamento.Direccion,
+                Precio = departamento.Precio,
+                CuartosDisponibles = departamento.CuartosDisponibles,
+                UsuarioId = departamento.UsuarioId
+            };
+
+            return Ok(dto); // Use Ok() to wrap the DTO in an ActionResult.
         }
 
         // POST: api/Departamentos
@@ -73,7 +98,18 @@ namespace HomeRentApp_Api.Controllers
             _context.Departamento.Add(departamento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetDepartamento), new { id = departamento.DepartamentoId }, departamento);
+            var response = new DepartamentoResponseDto
+            {
+                DepartamentoId = departamento.DepartamentoId,
+                ImagenUrl = $"{Request.Scheme}://{Request.Host}/uploads/{departamento.Imagen}",
+                Nombre = departamento.Nombre,
+                Direccion = departamento.Direccion,
+                Precio = departamento.Precio,
+                CuartosDisponibles = departamento.CuartosDisponibles,
+                UsuarioId = departamento.UsuarioId
+            };
+
+            return CreatedAtAction(nameof(GetDepartamento), new { id = departamento.DepartamentoId }, response);
         }
 
 

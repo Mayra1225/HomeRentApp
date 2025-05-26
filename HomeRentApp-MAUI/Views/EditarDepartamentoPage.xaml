@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeRentApp_MAUI.Views.EditarDepartamentoPage"
+             Title="EditarDepartamentoPage">
+    <StackLayout Padding="20" Spacing="10">
+        <Image x:Name="imagenPreview" HeightRequest="150"/>
+        <Button Text="Seleccionar Imagen" Clicked="OnSeleccionarImagen"/>
+        <Entry Placeholder="Nombre" x:Name="nombreEntry"/>
+        <Entry Placeholder="Dirección" x:Name="direccionEntry"/>
+        <Entry Placeholder="Precio" Keyboard="Numeric" x:Name="precioEntry"/>
+        <Entry Placeholder="Cuartos disponibles" x:Name="cuartosEntry"/>
+        <Button Text="Guardar Cambios" Clicked="OnGuardarClicked"/>
+    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="←" Priority="0" Order="Primary" Clicked="OnBackClicked"/>
+    </ContentPage.ToolbarItems>
+</ContentPage>
+    
