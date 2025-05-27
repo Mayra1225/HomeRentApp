@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HomeRentApp_MAUI.Models
 {
-    internal class Usuario
+    public class Usuario
     {
         public string UsuarioId { get; set; }
 

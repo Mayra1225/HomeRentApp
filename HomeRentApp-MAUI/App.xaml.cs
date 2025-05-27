@@ -6,7 +6,14 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            // Mostrar login primero
+            MainPage = new NavigationPage(new Views.LoginPage());
+        }
+
+        // Llamado desde LoginPage después de éxito
+        public void GoToMainShell()
+        {
+            MainPage = new AppShell(); // contiene el TabBar
         }
     }
 }

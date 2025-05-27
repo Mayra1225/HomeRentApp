@@ -115,32 +115,41 @@ namespace HomeRentApp_Api.Controllers
 
         // PUT: api/Departamentos/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDepartamento(int id, [FromForm] DepartamentoDto dto)
+        public async Task<IActionResult> PutDepartamento(int id, [FromForm] DepartamentoEditarDto dto)
         {
             var departamento = await _context.Departamento.FindAsync(id);
-            if (departamento == null) return NotFound();
+            if (departamento == null)
+                return NotFound();
 
-            departamento.Nombre = dto.Nombre;
-            departamento.Direccion = dto.Direccion;
-            departamento.Precio = dto.Precio;
-            departamento.CuartosDisponibles = dto.CuartosDisponibles;
-            departamento.UsuarioId = dto.UsuarioId;
+            if (dto.Nombre != null) departamento.Nombre = dto.Nombre;
+            if (dto.Direccion != null) departamento.Direccion = dto.Direccion;
+            if (dto.Precio != null) departamento.Precio = dto.Precio.Value;
+            if (dto.CuartosDisponibles != null) departamento.CuartosDisponibles = dto.CuartosDisponibles.Value;
+            if (dto.UsuarioId != null) departamento.UsuarioId = dto.UsuarioId;
+
 
             if (dto.Imagen != null && dto.Imagen.Length > 0)
             {
-                string folder = Path.Combine("wwwroot", "uploads");
-                if (!Directory.Exists(folder))
-                    Directory.CreateDirectory(folder);
+                // Ruta del archivo anterior
+                var carpeta = Path.Combine("wwwroot", "uploads");
+                var imagenAnterior = Path.Combine(carpeta, departamento.Imagen);
 
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Imagen.FileName);
-                string filePath = Path.Combine(folder, fileName);
+                // Eliminar imagen anterior si existe
+                if (!string.IsNullOrEmpty(departamento.Imagen) && System.IO.File.Exists(imagenAnterior))
+                {
+                    System.IO.File.Delete(imagenAnterior);
+                }
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                // Guardar nueva imagen
+                var nuevoNombre = Guid.NewGuid().ToString() + Path.GetExtension(dto.Imagen.FileName);
+                var nuevaRuta = Path.Combine(carpeta, nuevoNombre);
+
+                using (var stream = new FileStream(nuevaRuta, FileMode.Create))
                 {
                     await dto.Imagen.CopyToAsync(stream);
                 }
 
-                departamento.Imagen = fileName;
+                departamento.Imagen = nuevoNombre;
             }
 
             _context.Entry(departamento).State = EntityState.Modified;
@@ -158,15 +167,20 @@ namespace HomeRentApp_Api.Controllers
             if (departamento == null)
                 return NotFound();
 
+            // Ruta del archivo
+            var ruta = Path.Combine("wwwroot", "uploads", departamento.Imagen);
+
+            // Eliminar imagen si existe
+            if (!string.IsNullOrEmpty(departamento.Imagen) && System.IO.File.Exists(ruta))
+            {
+                System.IO.File.Delete(ruta);
+            }
+
             _context.Departamento.Remove(departamento);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DepartamentoExists(int id)
-        {
-            return _context.Departamento.Any(e => e.DepartamentoId == id);
-        }
     }
 }

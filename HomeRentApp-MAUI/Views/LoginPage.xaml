@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeRentApp_MAUI.Views.LoginPage"
+             Title="HOME">
+    <Shell.TitleView>
+        <Grid BackgroundColor="{StaticResource Fondo}">
+            <Label Text="Departamentos"  
+               VerticalOptions="Center"  
+               HorizontalOptions="Center"  
+               FontAttributes="Bold"  
+               TextColor="Black" />
+        </Grid>
+    </Shell.TitleView>
+    <ScrollView>
+        <StackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+
+            <Frame BackgroundColor="White" CornerRadius="20" Padding="20" HasShadow="True">
+                <StackLayout Spacing="15">
+
+                    <Image Source="usuario.png" HeightRequest="100" HorizontalOptions="Center"/>
+
+                    <!-- Campo adicional solo para registro -->
+                    <Entry x:Name="nombreEntry" Placeholder="Nombre" IsVisible="False" Style="{StaticResource StyledEntry}" />
+                    <Entry x:Name="apellidoEntry" Placeholder="Apellido" IsVisible="False" Style="{StaticResource StyledEntry}" />
+
+                    <Entry x:Name="usuarioEntry" Placeholder="Correo electrónico" Style="{StaticResource StyledEntry}" />
+                    <Entry x:Name="contrasenaEntry" Placeholder="Contraseña" IsPassword="True" Style="{StaticResource StyledEntry}" />
+
+                    <Button x:Name="loginButton" Text="Iniciar Sesión" Style="{StaticResource PrimaryButton}" Clicked="OnLoginOrRegisterClicked" />
+
+                    <Label x:Name="toggleLabel" Text="¿No tienes cuenta? Regístrate" HorizontalOptions="Center"
+                           TextColor="{StaticResource AccentOrange}" FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnToggleMode" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

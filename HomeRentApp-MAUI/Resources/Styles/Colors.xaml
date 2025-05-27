@@ -6,6 +6,21 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
+    <Color x:Key="Fondo">#FF8040</Color>
+    <!-- Fondo principal -->
+    <Color x:Key="Borde">gray</Color>
+    <!-- Borde -->
+    <Color x:Key="AccentOrange">#FF6600</Color>
+    <!-- Borde botón -->
+    <Color x:Key="CardBackground">#FFFFFF</Color>
+    <!-- Fondo tarjetas -->
+    <Color x:Key="DarkText">#000000</Color>
+    <!-- Texto principal -->
+    <Color x:Key="SubtleText">#6e6e6e</Color>
+    <!-- Texto gris -->
+    <Color x:Key="LightGray">#f4f4f4</Color>
+    <!-- Fondo secundario -->
+
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="PrimaryDark">#ac99ea</Color>
     <Color x:Key="PrimaryDarkText">#242424</Color>

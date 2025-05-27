@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HomeRentApp_MAUI.Views.NuevoDepartamentoPage"
              Title="NuevoDepartamentoPage">
+    <Shell.TitleView>
+        <Grid BackgroundColor="{StaticResource Fondo}">
+            <Label Text="Departamentos"  
+               VerticalOptions="Center"  
+               HorizontalOptions="Center"  
+               FontAttributes="Bold"  
+               TextColor="Black" />
+        </Grid>
+    </Shell.TitleView>
     <StackLayout Padding="20" Spacing="10">
         <Image x:Name="imagenPreview" HeightRequest="150"/>
-        <Button Text="Seleccionar Imagen" Clicked="OnSeleccionarImagen"/>
+        <Button Text="Seleccionar Imagen" Clicked="OnSeleccionarImagen" BackgroundColor="{StaticResource Fondo}" TextColor="Black"/>
         <Entry Placeholder="Nombre" x:Name="nombreEntry"/>
         <Entry Placeholder="Dirección" x:Name="direccionEntry"/>
         <Entry Placeholder="Precio" Keyboard="Numeric" x:Name="precioEntry"/>
         <Entry Placeholder="Cuartos Disponibles" Keyboard="Numeric" x:Name="cuartosEntry"/>
-        <Button Text="Guardar" Clicked="OnGuardarClicked"/>
+        <Button Text="Guardar" Clicked="OnGuardarClicked" BackgroundColor="{StaticResource Fondo}" TextColor="Black"/>
     </StackLayout>
 </ContentPage>

@@ -35,12 +35,20 @@ public partial class EditarDepartamentoPage : ContentPage
         try
         {
             var content = new MultipartFormDataContent();
-            content.Add(new StringContent(_departamento.DepartamentoId.ToString()), "DepartamentoId");
-            content.Add(new StringContent(nombreEntry.Text), "Nombre");
-            content.Add(new StringContent(direccionEntry.Text), "Direccion");
-            content.Add(new StringContent(precioEntry.Text), "Precio");
-            content.Add(new StringContent(cuartosEntry.Text), "CuartosDisponibles");
-            content.Add(new StringContent("5"), "UsuarioId");
+
+            if (!string.IsNullOrWhiteSpace(nombreEntry.Text))
+                content.Add(new StringContent(nombreEntry.Text), "Nombre");
+
+            if (!string.IsNullOrWhiteSpace(direccionEntry.Text))
+                content.Add(new StringContent(direccionEntry.Text), "Direccion");
+
+            if (!string.IsNullOrWhiteSpace(precioEntry.Text))
+                content.Add(new StringContent(precioEntry.Text), "Precio");
+
+            if (!string.IsNullOrWhiteSpace(cuartosEntry.Text))
+                content.Add(new StringContent(cuartosEntry.Text), "CuartosDisponibles");
+
+            content.Add(new StringContent(_departamento.UsuarioId), "UsuarioId");
 
             if (imagenSeleccionada != null)
             {
